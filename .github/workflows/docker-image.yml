@@ -1,0 +1,37 @@
+name: nodejs-build
+on: 
+  push:
+    branches:
+      - dev
+      - main
+    paths-ignore:
+      - .github/workflows/*.yaml
+  issues:
+    types:
+      - opened
+      - closed
+  workflow_dispatch: 
+jobs:
+  gitcheckout:
+    runs-on: self-hosted
+    steps:
+      - name: git-checkout
+        uses: actions/checkout@v7
+        workdirectory: ./
+  dotnet-installation:
+    runs-on: self-hosted
+    needs: gitcheckout
+    steps:
+      - name: dotnet installation
+        uses: uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '2.1.x'
+  compile and buid:
+    runs-on: self-hosted
+    needs: dotnet-installation
+    steps:
+      - name: compilation
+        run: dotnet restore
+      - name: build
+        run: dotnet build
+          
