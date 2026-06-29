@@ -22,6 +22,7 @@ jobs:
     needs: gitcheckout
     steps:
       - name: test
+        working-directory: ./src
         run:  npm test
       - name: compilation
         working-directory: ./src
