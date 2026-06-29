@@ -27,5 +27,6 @@ jobs:
         working-directory: ./src
         run: npm ci install
       - name: build
+        working-directory: ./src
         run: npm start
           
