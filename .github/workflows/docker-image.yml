@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - dev
-      - main
+      - master
     paths-ignore:
       - .github/workflows/*.yaml
   issues:
