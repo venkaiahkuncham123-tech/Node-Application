@@ -17,21 +17,13 @@ jobs:
     steps:
       - name: git-checkout
         uses: actions/checkout@v7
-        workdirectory: ./
-  dotnet-installation:
+  compile_and_buid:
     runs-on: self-hosted
     needs: gitcheckout
     steps:
-      - name: dotnet installation
-        uses: uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '2.1.x'
-  compile and buid:
-    runs-on: self-hosted
-    needs: dotnet-installation
-    steps:
       - name: compilation
-        run: dotnet restore
+        working-directory: ./src
+        run: npm install
       - name: build
-        run: dotnet build
+        run: npm start
           
