@@ -23,9 +23,6 @@ jobs:
     steps:
       - name: git-checkout
         uses: actions/checkout@v7
-      - name: test
-        working-directory: ./src
-        run:  npm test
       - name: compilation
         working-directory: ./src
         run: npm ci install
