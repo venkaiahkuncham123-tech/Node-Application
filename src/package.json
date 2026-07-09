@@ -20,6 +20,7 @@
     "test": "httpyac tests/base-tests.http --all --output short",
     "lint": "prettier --check **/*.mjs *.mjs",
     "lint-fix": "eslint . --fix && prettier --write **/*.mjs *.mjs"
+    "build": "echo 'No compilation needed for this project'"
   },
   "dependencies": {
     "@azure/msal-node": "^2.15.0",
