@@ -31,7 +31,9 @@ pipeline {
                 expression {params.TEST == true}
             }
             steps {
+                dir('./src'){
                 sh 'npm test'
+            }
             }
         }
         stage('Installin the dependencies') {
