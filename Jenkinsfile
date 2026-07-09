@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: '${params.BRACH}', url: 'https://github.com/venkaiahkuncham123-tech/Node-Application.git'
+                git branch: "${params.BRACH}", url: 'https://github.com/venkaiahkuncham123-tech/Node-Application.git'
                 sh "echo Brach cloned is:${params.BRACH}"
             }
         }   
