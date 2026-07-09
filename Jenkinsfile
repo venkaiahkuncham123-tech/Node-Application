@@ -7,7 +7,7 @@ pipeline {
         SONAR_HOME = tool 'venkaiah-sonar-scanner'
     }
     parameters {
-    choice(name: 'BRACH', choices: ['master,'main','dev','qa','ppd'], description: 'Brnaches to clone')
+    choice(name: 'BRACH', choices: ['master','main','dev','qa','ppd'], description: 'Brnaches to clone')
     booleanParam(name:'TEST', defaultValue: false, description: 'Do you want to run tets?')
     booleanParam(name: 'QUALITY', defaultValue:false, description: 'Do you need quality check?')
     }
