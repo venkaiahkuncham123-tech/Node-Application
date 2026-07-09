@@ -19,13 +19,13 @@ pipeline {
                 sh "echo Brach cloned is:${params.BRACH}"
             }
         }   
-        stage('Compiling the Application') {
+        /* stage('Compiling the Application') {
             steps {
                 dir ('./src'){
                sh 'npm run build'
                 }
             }
-        }
+        } */
         stage('Testing the code') {
             when {
                 expression {params.TEST == true}
