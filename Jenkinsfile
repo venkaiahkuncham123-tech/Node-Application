@@ -26,7 +26,15 @@ pipeline {
                 }
             }
         } */
-        stage('Testing the code') {
+       
+        stage('Installin the dependencies') {
+            steps {
+                dir('./src'){
+                    sh 'npm install'
+                }
+            }
+        }
+         stage('Testing the code') {
             when {
                 expression {params.TEST == true}
             }
@@ -34,13 +42,6 @@ pipeline {
                 dir('./src'){
                 sh 'npm test'
             }
-            }
-        }
-        stage('Installin the dependencies') {
-            steps {
-                dir('./src'){
-                    sh 'npm install'
-                }
             }
         }
         stage('SonarQube Analysis') {
