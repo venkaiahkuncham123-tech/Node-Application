@@ -15,13 +15,15 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/venkaiahkuncham123-tech/Node-Application.git'
+                git branch: '${params.BRACH}', url: 'https://github.com/venkaiahkuncham123-tech/Node-Application.git'
                 sh "echo Brach cloned is:${params.BRACH}"
             }
         }   
         stage('Compiling the Application') {
             steps {
+                dir ('./src'){
                sh 'npm run build'
+                }
             }
         }
         stage('Testing the code') {
@@ -34,13 +36,15 @@ pipeline {
         }
         stage('Installin the dependencies') {
             steps {
+                dir('./src'){
                     sh 'npm install'
+                }
             }
         }
         stage('SonarQube Analysis') {
             steps {
                    withSonarQubeEnv('venkaiah-sonar') {
-                        sh '''$SONAR_HOME/bin/sonar-scanner -Dsonar.prject.properties=.'''
+                        sh '''$SONAR_HOME/bin/sonar-scanner -Dsonar.prject.properties=./src'''
                 }
             }
         }
@@ -58,7 +62,9 @@ pipeline {
         }
         stage('Running Application') {
             steps {
+                dir('./src'){
                 sh 'npm start'
+                }
             }
         }  
     }
