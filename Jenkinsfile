@@ -40,14 +40,14 @@ pipeline {
             }
             steps {
                 dir('./src'){
-                sh 'npm test'
+                sh 'npm run test'
             }
             }
         }
         stage('SonarQube Analysis') {
             steps {
                    withSonarQubeEnv('venkaiah-sonar') {
-                        sh '''$SONAR_HOME/bin/sonar-scanner -Dsonar.prject.properties=./src'''
+                        sh '''$SONAR_HOME/bin/sonar-scanner -Dproject.settings=./src'''
                 }
             }
         }
@@ -66,7 +66,7 @@ pipeline {
         stage('Running Application') {
             steps {
                 dir('./src'){
-                sh 'npm start'
+                sh 'npm start &'
                 }
             }
         }  
