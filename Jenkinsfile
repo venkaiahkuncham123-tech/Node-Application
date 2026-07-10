@@ -49,7 +49,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                    withSonarQubeEnv('venkaiah-sonar') {
-                        sh '''$SONAR_HOME/bin/sonar-scanner -Dproject.settings=./src'''
+                        sh '''$SONAR_HOME/bin/sonar-scanner -Dproject.settings=.'''
                 }
             }
         }
