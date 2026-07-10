@@ -49,7 +49,14 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                    withSonarQubeEnv('venkaiah-sonar') {
-                        sh '''$SONAR_HOME/bin/sonar-scanner -Dproject.settings=.'''
+                 sh '''$SONAR_HOME/bin/sonar-scanner -Dsonar.projectKey="my-nodejs-app" \
+                -Dsonar.projectName="My Node.js Application" \
+                -Dsonar.sources="src" \
+                -Dsonar.tests="src" \
+                -Dsonar.test.inclusions="**/*.test.js,**/*.test.ts,**/*.spec.js,**/*.spec.ts" \
+                -Dsonar.exclusions="node_modules/**,dist/**,build/**,coverage/**" \
+                -Dsonar.javascript.lcov.reportPaths="coverage/lcov.info" \
+                '''
                 }
             }
         }
