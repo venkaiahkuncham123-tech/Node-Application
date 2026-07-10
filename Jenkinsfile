@@ -29,9 +29,11 @@ pipeline {
        
         stage('Installin the dependencies') {
             steps {
+                nodejs('Node-Installation'){
                 dir('./src'){
                     sh 'npm install'
                 }
+            }
             }
         }
          stage('Testing the code') {
